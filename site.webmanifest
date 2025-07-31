@@ -1,0 +1,78 @@
+{
+  "name": "Study Points Tracker",
+  "short_name": "StudyTracker",
+  "description": "Track your study activities and earn points for productive work",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4361ee",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/TP8dPLyt/2756-removebg-preview.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.postimg.cc/TP8dPLyt/2756-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.postimg.cc/TP8dPLyt/2756-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["education", "productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "https://i.postimg.cc/TP8dPLyt/2756-removebg-preview.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "https://i.postimg.cc/TP8dPLyt/2756-removebg-preview.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://trackstudyapp.netlify.app/"
+    }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Add Study Points",
+      "short_name": "Add Points",
+      "description": "Quickly add study activity points",
+      "url": "/?add-points",
+      "icons": [
+        {
+          "src": "https://i.postimg.cc/TP8dPLyt/2756-removebg-preview.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "View History",
+      "short_name": "History",
+      "description": "View your study activity history",
+      "url": "/?history",
+      "icons": [
+        {
+          "src": "https://i.postimg.cc/TP8dPLyt/2756-removebg-preview.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+} 
