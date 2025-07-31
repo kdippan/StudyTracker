@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Points Tracker| Study Together</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .points-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .category {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity:last-child {
+            border-bottom: none;
+        }
+
+        .activity-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activity-name {
+            font-weight: 500;
+        }
+
+        .activity-points {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-add {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-add:hover {
+            background-color: #3aa8d8;
+        }
+
+        .btn-deduct {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-deduct:hover {
+            background-color: #e5177b;
+        }
+
+        .history {
+            margin-top: 30px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .positive {
+            color: var(--success);
+        }
+
+        .negative {
+            color: var(--danger);
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: var(--warning);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background-color: #e68717;
+        }
+
+        @media (max-width: 768px) {
+            .points-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Study Points Tracker</h1>
+            <p>Track your study activities and earn points for productive work</p>
+        </header>
+
+        <div class="score-display" id="totalPoints">0 points</div>
+
+        <div class="points-container">
+            <div class="category">
+                <h2 class="category-title">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/wloilxuq.json"
+                        trigger="hover"
+                        colors="primary:#4361ee,secondary:#3a7bd5"
+                        style="width:40px;height:40px">
+                    </lord-icon>
+                    Study Activities
+                </h2>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-book"></i>
+                        <span class="activity-name">Chapter reading</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+10</span>
+                        <button class="btn btn-add" onclick="addPoints(10, 'Chapter reading')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-pencil-alt"></i>
+                        <span class="activity-name">Notes</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+10</span>
+                        <button class="btn btn-add" onclick="addPoints(10, 'Notes')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="activity-name">One page</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+20</span>
+                        <button class="btn btn-add" onclick="addPoints(20, 'One page')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="activity-name">Quizzes, flashcards</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+20</span>
+                        <button class="btn btn-add" onclick="addPoints(20, 'Quizzes, flashcards')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span class="activity-name">Teaching</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+20</span>
+                        <button class="btn btn-add" onclick="addPoints(20, 'Teaching')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-brain"></i>
+                        <span class="activity-name">Active recall (without testing)</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+20</span>
+                        <button class="btn btn-add" onclick="addPoints(20, 'Active recall (without testing)')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-brain"></i>
+                        <span class="activity-name">Active recall with testing</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+30</span>
+                        <button class="btn btn-add" onclick="addPoints(30, 'Active recall with testing')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-file-contract"></i>
+                        <span class="activity-name">Practice papers</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+40</span>
+                        <button class="btn btn-add" onclick="addPoints(40, 'Practice papers')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-check-circle"></i>
+                        <span class="activity-name">Checking</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+10</span>
+                        <button class="btn btn-add" onclick="addPoints(10, 'Checking')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-book-open"></i>
+                        <span class="activity-name">Book Questions (min-to)</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+10</span>
+                        <button class="btn btn-add" onclick="addPoints(10, 'Book Questions')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2 class="category-title">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/sbiheqdr.json"
+                        trigger="hover"
+                        colors="primary:#4361ee,secondary:#3a7bd5"
+                        style="width:40px;height:40px">
+                    </lord-icon>
+                    Promus Activities
+                </h2>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-question"></i>
+                        <span class="activity-name">50 questions (4 quizzes)</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+4</span>
+                        <button class="btn btn-add" onclick="addPoints(4, '50 questions (4 quizzes)')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="activity-name">2 test papers (1 day)</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+5</span>
+                        <button class="btn btn-add" onclick="addPoints(5, '2 test papers (1 day)')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="activity-name">Mind maps in memory</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+2</span>
+                        <button class="btn btn-add" onclick="addPoints(2, 'Mind maps in memory')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <h2 class="category-title">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/tdxypxgp.json"
+                        trigger="hover"
+                        colors="primary:#4361ee,secondary:#f72585"
+                        style="width:40px;height:40px">
+                    </lord-icon>
+                    Deductions
+                </h2>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-times-circle"></i>
+                        <span class="activity-name">Skipped studying (per day)</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points" style="color: var(--danger);">-20</span>
+                        <button class="btn btn-deduct" onclick="deductPoints(20, 'Skipped studying')">
+                            <i class="fas fa-minus"></i> Deduct
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span class="activity-name">Doom scrolling</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points" style="color: var(--danger);">-50</span>
+                        <button class="btn btn-deduct" onclick="deductPoints(50, 'Doom scrolling')">
+                            <i class="fas fa-minus"></i> Deduct
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-bed"></i>
+                        <span class="activity-name">Not motivated</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points" style="color: var(--danger);">-30</span>
+                        <button class="btn btn-deduct" onclick="deductPoints(30, 'Not motivated')">
+                            <i class="fas fa-minus"></i> Deduct
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="history">
+            <h2 class="history-title">
+                <i class="fas fa-history"></i> Activity History
+            </h2>
+            <div class="history-list" id="historyList">
+                <!-- History items will be added here dynamically -->
+            </div>
+        </div>
+
+        <button class="reset-btn" onclick="resetPoints()">
+            <i class="fas fa-redo"></i> Reset All Points
+        </button>
+    </div>
+
+    <script>
+        // Initialize total points from localStorage or set to 0
+        let totalPoints = localStorage.getItem('totalPoints') ? parseInt(localStorage.getItem('totalPoints')) : 0;
+        let history = localStorage.getItem('history') ? JSON.parse(localStorage.getItem('history')) : [];
+
+        // Update the display
+        updatePointsDisplay();
+        renderHistory();
+
+        // Function to add points
+        function addPoints(points, activity) {
+            totalPoints += points;
+            updateLocalStorage();
+            updatePointsDisplay();
+            
+            // Add to history
+            const timestamp = new Date().toLocaleString();
+            history.unshift({
+                activity: activity,
+                points: '+' + points,
+                timestamp: timestamp,
+                type: 'positive'
+            });
+            
+            // Keep only the last 50 history items
+            if (history.length > 50) {
+                history.pop();
+            }
+            
+            updateLocalStorage();
+            renderHistory();
+            
+            // Show success animation
+            showFeedbackAnimation(points, true);
+        }
+
+        // Function to deduct points
+        function deductPoints(points, activity) {
+            totalPoints -= points;
+            updateLocalStorage();
+            updatePointsDisplay();
+            
+            // Add to history
+            const timestamp = new Date().toLocaleString();
+            history.unshift({
+                activity: activity,
+                points: '-' + points,
+                timestamp: timestamp,
+                type: 'negative'
+            });
+            
+            // Keep only the last 50 history items
+            if (history.length > 50) {
+                history.pop();
+            }
+            
+            updateLocalStorage();
+            renderHistory();
+            
+            // Show warning animation
+            showFeedbackAnimation(points, false);
+        }
+
+        // Function to reset all points
+        function resetPoints() {
+            if (confirm('Are you sure you want to reset all points?')) {
+                totalPoints = 0;
+                history = [];
+                updateLocalStorage();
+                updatePointsDisplay();
+                renderHistory();
+            }
+        }
+
+        // Update points display
+        function updatePointsDisplay() {
+            document.getElementById('totalPoints').textContent = totalPoints + ' points';
+            
+            // Change color based on points
+            const display = document.getElementById('totalPoints');
+            if (totalPoints > 0) {
+                display.style.color = 'var(--success)';
+            } else if (totalPoints < 0) {
+                display.style.color = 'var(--danger)';
+            } else {
+                display.style.color = 'var(--primary)';
+            }
+        }
+
+        // Render history
+        function renderHistory() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<p>No activity recorded yet.</p>';
+                return;
+            }
+            
+            history.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                
+                const activityInfo = document.createElement('div');
+                activityInfo.innerHTML = `
+                    <strong>${item.activity}</strong>
+                    <small>${item.timestamp}</small>
+                `;
+                
+                const pointsInfo = document.createElement('div');
+                pointsInfo.className = item.type === 'positive' ? 'positive' : 'negative';
+                pointsInfo.textContent = item.points;
+                
+                historyItem.appendChild(activityInfo);
+                historyItem.appendChild(pointsInfo);
+                historyList.appendChild(historyItem);
+            });
+        }
+
+        // Update localStorage
+        function updateLocalStorage() {
+            localStorage.setItem('totalPoints', totalPoints);
+            localStorage.setItem('history', JSON.stringify(history));
+        }
+
+        // Show feedback animation
+        function showFeedbackAnimation(points, isPositive) {
+            const feedback = document.createElement('div');
+            feedback.style.position = 'fixed';
+            feedback.style.top = '20%';
+            feedback.style.left = '50%';
+            feedback.style.transform = 'translateX(-50%)';
+            feedback.style.fontSize = '2rem';
+            feedback.style.fontWeight = 'bold';
+            feedback.style.zIndex = '1000';
+            feedback.style.animation = 'fadeOut 1.5s forwards';
+            feedback.textContent = (isPositive ? '+' : '-') + points;
+            feedback.style.color = isPositive ? 'var(--success)' : 'var(--danger)';
+            
+            document.body.appendChild(feedback);
+            
+            // Remove after animation
+            setTimeout(() => {
+                feedback.remove();
+            }, 1500);
+        }
+
+        // Add fadeOut animation to style
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% { opacity: 1; transform: translate(-50%, 0); }
+                100% { opacity: 0; transform: translate(-50%, -100px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
