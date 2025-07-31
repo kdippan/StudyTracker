@@ -47,7 +47,41 @@ A gamified web application that helps students track study activities and stay m
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Edge)
 
-### Installation
-1. Clone the repository:
-```bash
-git clone https://github.com/kdippan/StudyTracker.git
+## Support ❤️
+
+If you find this project useful, consider:
+- [⭐ Starring the repository](https://github.com/kdippan/StudyTracker)
+- [🐛 Reporting issues](https://github.com/kdippan/StudyTracker/issues)
+
+## Future Roadmap 🗺️
+
+- [ ] Add user accounts
+- [ ] Implement weekly/monthly reports
+- [ ] Dark mode support
+- [ ] Mobile app version
+
+
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "Deploying to Netlify..."
+
+## Project Structure 📂
+StudyTracker/
+├── main/
+│   ├── index.html          # Main application file
+│   ├── style.css           # CSS styles
+│   ├── script.js           # JavaScript functionality
+│   ├── assets/             # Additional assets
+│   │   ├── images/         # Image files
+│   │   └── fonts/          # Custom fonts
+├── LICENSE                 # MIT License file
+└── README.md               # Project documentation
