@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
-    <style>
+   <!-- <style>
         :root {
             --primary: #4361ee;
             --secondary: #3f37c9;
@@ -46,7 +46,21 @@
             --success: #4cc9f0;
             --danger: #f72585;
             --warning: #f8961e;
+            --bg-color: #ffffff;
+  --text-color: var(--dark);
+  --card-bg: #ffffff;
         }
+
+[data-theme="dark"] {
+  --primary: #4895ef;
+  --secondary: #4361ee;
+  --accent: #3f37c9;
+  --light: #2b2d42;
+  --dark: #f8f9fa;
+  --bg-color: #121212;
+  --text-color: #f8f9fa;
+  --card-bg: #1e1e1e;
+}
 
         * {
             margin: 0;
@@ -56,11 +70,32 @@
         }
 
         body {
-            background-color: #f5f7fa;
-            color: var(--dark);
+            background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
             line-height: 1.6;
         }
-
+.category {
+  background: var(--card-bg);
+  transition: background 0.3s ease;
+}
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -237,9 +272,259 @@
                 align-items: center;
             }
         }
+    </style> -->
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --bg-color: #f5f7fa;
+            --text-color: var(--dark);
+            --card-bg: #ffffff;
+            --icon-color: #4361ee;
+            --border-color: #e0e0e0;
+        }
+
+        [data-theme="dark"] {
+            --primary: #4895ef;
+            --secondary: #4361ee;
+            --accent: #3f37c9;
+            --light: #2b2d42;
+            --dark: #f8f9fa;
+            --bg-color: #121212;
+            --text-color: #f8f9fa;
+            --card-bg: #1e1e1e;
+            --icon-color: #4895ef;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--primary);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        .points-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .category {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .activity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .activity:last-child {
+            border-bottom: none;
+        }
+
+        .activity-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activity-name {
+            font-weight: 500;
+        }
+
+        .activity-points {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-add {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-add:hover {
+            background-color: #3aa8d8;
+        }
+
+        .btn-deduct {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-deduct:hover {
+            background-color: #e5177b;
+        }
+
+        .history {
+            margin-top: 30px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .history-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .positive {
+            color: var(--success);
+        }
+
+        .negative {
+            color: var(--danger);
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: var(--warning);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background-color: #e68717;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .lord-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .points-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <i class="fas fa-moon" id="themeIcon"></i>
+</button>
     <div class="container">
         <header>
             <h1>Study Points Tracker</h1>
@@ -664,6 +949,53 @@
             }
         `;
         document.head.appendChild(style);
+    </script>
+    <script type="text/javascript" charset="utf-8">
+        // Dark mode functionality
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const html = document.documentElement;
+
+// Check for saved theme preference
+const currentTheme = localStorage.getItem('theme') || 'light';
+if (currentTheme === 'dark') {
+    html.setAttribute('data-theme', 'dark');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Toggle theme
+themeToggle.addEventListener('click', () => {
+    if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
+    } else {
+        html.setAttribute('data-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
+    }
+});
+    </script>
+    <script type="text/javascript" charset="utf-8">
+        // Detect system color scheme preference
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme')) {
+  html.setAttribute('data-theme', 'dark');
+  themeIcon.classList.replace('fa-moon', 'fa-sun');
+  localStorage.setItem('theme', 'dark');
+}
+
+// Listen for system theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if (!localStorage.getItem('theme')) {
+    if (e.matches) {
+      html.setAttribute('data-theme', 'dark');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+    } else {
+      html.removeAttribute('data-theme');
+      themeIcon.classList.replace('fa-sun', 'fa-moon');
+    }
+  }
+});
     </script>
 </body>
 </html>
