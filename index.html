@@ -531,7 +531,7 @@
             <p>Track your study activities and earn points for productive work</p>
         </header>
 
-        <div class="score-display" id="totalPoints">0 points</div>
+        <div class="score-display" id="totalPoints">0 Points</div>
 
         <div class="points-container">
             <div class="category">
@@ -539,7 +539,7 @@
                     <lord-icon
                         src="https://cdn.lordicon.com/wloilxuq.json"
                         trigger="hover"
-                        colors="primary:#4361ee,secondary:#3a7bd5"
+                        colors="primary:#4361ee,secondary:#fffff"
                         style="width:40px;height:40px">
                     </lord-icon>
                     Study Activities
@@ -551,8 +551,8 @@
                         <span class="activity-name">Chapter reading</span>
                     </div>
                     <div class="activity-actions">
-                        <span class="activity-points">+10</span>
-                        <button class="btn btn-add" onclick="addPoints(10, 'Chapter reading')">
+                        <span class="activity-points">+20</span>
+                        <button class="btn btn-add" onclick="addPoints(20, 'Chapter reading')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -561,11 +561,11 @@
                 <div class="activity">
                     <div class="activity-info">
                         <i class="fas fa-pencil-alt"></i>
-                        <span class="activity-name">Notes</span>
+                        <span class="activity-name">Note- Taking( Summary / Important Points) </span>
                     </div>
                     <div class="activity-actions">
-                        <span class="activity-points">+10</span>
-                        <button class="btn btn-add" onclick="addPoints(10, 'Notes')">
+                        <span class="activity-points">+50</span>
+                        <button class="btn btn-add" onclick="addPoints(50, 'Notes')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -574,11 +574,11 @@
                 <div class="activity">
                     <div class="activity-info">
                         <i class="fas fa-file-alt"></i>
-                        <span class="activity-name">One page</span>
+                        <span class="activity-name">Short Quiz (Self / Paper-Made)</span>
                     </div>
                     <div class="activity-actions">
                         <span class="activity-points">+20</span>
-                        <button class="btn btn-add" onclick="addPoints(20, 'One page')">
+                        <button class="btn btn-add" onclick="addPoints(20, 'SHORT Quiz')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -586,12 +586,12 @@
                 
                 <div class="activity">
                     <div class="activity-info">
-                        <i class="fas fa-question-circle"></i>
-                        <span class="activity-name">Quizzes, flashcards</span>
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="activity-name">Teaching/ Explaining</span>
                     </div>
                     <div class="activity-actions">
                         <span class="activity-points">+20</span>
-                        <button class="btn btn-add" onclick="addPoints(20, 'Quizzes, flashcards')">
+                        <button class="btn btn-add" onclick="addPoints(20, 'Teaching/Explaining')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -600,11 +600,11 @@
                 <div class="activity">
                     <div class="activity-info">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        <span class="activity-name">Teaching</span>
+                        <span class="activity-name">Practice 10 Questions</span>
                     </div>
                     <div class="activity-actions">
                         <span class="activity-points">+20</span>
-                        <button class="btn btn-add" onclick="addPoints(20, 'Teaching')">
+                        <button class="btn btn-add" onclick="addPoints(20, '10 Questions (Practice)')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -626,11 +626,11 @@
                 <div class="activity">
                     <div class="activity-info">
                         <i class="fas fa-brain"></i>
-                        <span class="activity-name">Active recall with testing</span>
+                        <span class="activity-name">Conceptual Recall (Whole Idea/Flow)</span>
                     </div>
                     <div class="activity-actions">
                         <span class="activity-points">+30</span>
-                        <button class="btn btn-add" onclick="addPoints(30, 'Active recall with testing')">
+                        <button class="btn btn-add" onclick="addPoints(30, 'Conceptual Recall')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -639,11 +639,11 @@
                 <div class="activity">
                     <div class="activity-info">
                         <i class="fas fa-file-contract"></i>
-                        <span class="activity-name">Practice papers</span>
+                        <span class="activity-name">Chapter Recall ( Close Book & Outline main ideas)</span>
                     </div>
                     <div class="activity-actions">
-                        <span class="activity-points">+40</span>
-                        <button class="btn btn-add" onclick="addPoints(40, 'Practice papers')">
+                        <span class="activity-points">+30</span>
+                        <button class="btn btn-add" onclick="addPoints(30, 'Chapter Recall')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -684,17 +684,17 @@
                         colors="primary:#4361ee,secondary:#3a7bd5"
                         style="width:40px;height:40px">
                     </lord-icon>
-                    Promus Activities
+                    Bonus Booster
                 </h2>
                 
                 <div class="activity">
                     <div class="activity-info">
                         <i class="fas fa-question"></i>
-                        <span class="activity-name">50 questions (4 quizzes)</span>
+                        <span class="activity-name">30 questions in a day</span>
                     </div>
                     <div class="activity-actions">
-                        <span class="activity-points">+4</span>
-                        <button class="btn btn-add" onclick="addPoints(4, '50 questions (4 quizzes)')">
+                        <span class="activity-points">+50</span>
+                        <button class="btn btn-add" onclick="addPoints(50, '30 Questions in a Day')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -703,11 +703,11 @@
                 <div class="activity">
                     <div class="activity-info">
                         <i class="fas fa-file-alt"></i>
-                        <span class="activity-name">2 test papers (1 day)</span>
+                        <span class="activity-name">50 questios in a day</span>
                     </div>
                     <div class="activity-actions">
-                        <span class="activity-points">+5</span>
-                        <button class="btn btn-add" onclick="addPoints(5, '2 test papers (1 day)')">
+                        <span class="activity-points">+50</span>
+                        <button class="btn btn-add" onclick="addPoints(200, '50 Questions.Per Day')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
@@ -715,18 +715,97 @@
                 
                 <div class="activity">
                     <div class="activity-info">
-                        <i class="fas fa-project-diagram"></i>
-                        <span class="activity-name">Mind maps in memory</span>
+                        <i class="fas fa-video"></i>
+                        <span class="activity-name">One Shot 1hr Complete</span>
                     </div>
                     <div class="activity-actions">
-                        <span class="activity-points">+2</span>
-                        <button class="btn btn-add" onclick="addPoints(2, 'Mind maps in memory')">
+                        <span class="activity-points">+40</span>
+                        <button class="btn btn-add" onclick="addPoints(40, 'OneShot 1 Hour Complete')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                <div class="activity">
+    <div class="activity-info">
+        <i class="fas fa-video"></i>
+        <span class="activity-name">One Shot 2hr+ Complete</span>
+    </div>
+    <div class="activity-actions">
+        <span class="activity-points">+100</span>
+        <button class="btn btn-add" onclick="addPoints(100, 'OneShot 2 Hour + Complete')">
+            <i class="fas fa-plus"></i> Add
+        </button>
+    </div>
+                </div>
+<div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-video"></i>
+                        <span class="activity-name">Practice Paper (Full)</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+200</span>
+                        <button class="btn btn-add" onclick="addPoints(200, 'Practice Paper (Full)')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            
+</div>
+</div>
+            </div>
+            
+            <div class="category">
+                <h2 class="category-title">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/kezeezyg.json"
+                        trigger="loop-on-hover"
+                        colors="primary:#4361ee,secondary:#088F8F"
+                        style="width:40px;height:40px">
+                    </lord-icon>
+                    Special Rewards 
+                </h2>
+
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-question"></i>
+                        <span class="activity-name">Finish 1 Whole Chapter with Notes, Reading, recall, + Practice Set </span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+100</span>
+                        <button class="btn btn-add" onclick="addPoints(100, 'Finish a Whole Chapter with notes and other')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-question"></i>
+                        <span class="activity-name">Finish 7 day streak</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+50</span>
+                        <button class="btn btn-add" onclick="addPoints(50, '7 day Streak')">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            
+                <div class="activity">
+                    <div class="activity-info">
+                        <i class="fas fa-question"></i>
+                        <span class="activity-name">30 day streak</span>
+                    </div>
+                    <div class="activity-actions">
+                        <span class="activity-points">+500</span>
+                        <button class="btn btn-add" onclick="addPoints(500, '30 Day Streak')">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </div>
                 </div>
             </div>
-
+            </div> 
+                
+<br />
             <div class="category">
                 <h2 class="category-title">
                     <lord-icon
